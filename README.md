@@ -1,1 +1,0 @@
-# cuby-quick-start

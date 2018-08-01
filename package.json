@@ -1,24 +1,25 @@
 {
-  "name": "cuby-quick-start",
+  "name": "projectNE",
   "version": "1.0.0",
-  "description": "a quick start",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "npm install",
     "start": "webpack-dev-server --mode development --module-bind js=babel-loader css=style-loader --host 0.0.0.0 --port 114",
     "dev": "webpack -w --devtool inline-source-map --mode development --module-bind js=babel-loader css=style-loader",
+    "node": "node axserver",
     "build": "webpack --mode production --module-bind js=babel-loader  css=style-loader"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnxinYang/cuby-quick-start.git"
+    "url": "git+https://github.com/AnxinYang/projectAX.git"
   },
   "author": "Anxin Yang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AnxinYang/cuby-quick-start/issues"
+    "url": "https://github.com/AnxinYang/projectAX/issues"
   },
-  "homepage": "https://github.com/AnxinYang/cuby-quick-start#readme",
+  "homepage": "https://github.com/AnxinYang/projectAX#readme",
   "babel": {
     "presets": [
       "es2015",
