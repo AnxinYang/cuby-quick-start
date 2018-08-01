@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>cuby-quick-start</title>
+    <script>
+        var loadList = ['./src/index.js'];
+        var loadedAsset = 0;
+        const numOfAsset = loadList.length;
+
+        var assetLoaded = function (name, callback) {
+            console.log('('+loadedAsset+'/'+numOfAsset+'): '+name+' is loaded.');
+            loadFile(loadList);
+            if(callback){
+                callback();
+            }
+        };
+
+        var loadFile = function (loadList) {
+            if(loadList.length===0){
+                return;
+            }
+            var file = loadList.shift();
+            var fileref = document.createElement('script');
+            fileref.setAttribute("type", "text/javascript");
+            fileref.setAttribute("src", file);
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        };
+
+        function init() {
+            loadFile(loadList);
+        }
+    </script>
 </head>
-<body id="rootContainer">
+<body onload="init()" id="rootContainer">
 
 </body>
 </html>
