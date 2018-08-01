@@ -1,1 +1,0 @@
-var dashboardContainer = CubY.createElement('div', 'dashboardContainer');
