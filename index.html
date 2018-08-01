@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>projectNE</title>
+    <title>cuby-quick-start</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="coral">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
@@ -78,7 +78,7 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSj6fzIviTO0Xo8Q971GjStAkMENnRzoQ&libraries=places" async defer></script>
     <script>
-        var loadList = ['config.js','main.js'];
+        var loadList = ['main.js'];
         var loadedAsset = 0;
         const numOfAsset = loadList.length;
 
@@ -106,7 +106,6 @@
         }
     </script>
 </head>
-<body onload="init()" style="fontSize: 12px;font-family: Arial;margin: 0;padding: 0">
-<div id="app" style="width: 100vw;height: 100vh;overflow: hidden"></div>
+<body id="app" onload="init()" style="fontSize: 12px;font-family: Arial;margin: 0;padding: 0">
 </body>
 </html>
