@@ -1,0 +1,19 @@
+{
+  "name": "cuby-quick-start",
+  "version": "1.0.0",
+  "description": "a quick start",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnxinYang/cuby-quick-start.git"
+  },
+  "author": "Anxin Yang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnxinYang/cuby-quick-start/issues"
+  },
+  "homepage": "https://github.com/AnxinYang/cuby-quick-start#readme"
+}
