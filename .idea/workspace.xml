@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76598220-c0f0-4a80-b669-47b9f30f276e" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/services/View.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/services/Web.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/cardContainer.js" afterPath="$PROJECT_DIR$/src/components/cardContainer.js" />
       <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
+      <change beforePath="$PROJECT_DIR$/src/styles/colors.js" afterPath="$PROJECT_DIR$/src/styles/colors.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state relative-caret-position="-624">
+              <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding>
                 <element signature="e#47#78#0" expanded="true" />
               </folding>
@@ -27,11 +31,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/common.js">
+      <file leaf-file-name="View.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/services/View.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="364">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Web.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/Web.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1716">
+              <caret line="66" column="2" lean-forward="true" selection-start-line="66" selection-start-column="2" selection-end-line="66" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -40,8 +54,8 @@
       <file leaf-file-name="colors.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/styles/colors.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            <state relative-caret-position="26">
+              <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -50,8 +64,8 @@
       <file leaf-file-name="cardContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/cardContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="14" />
+            <state relative-caret-position="26">
+              <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -80,8 +94,8 @@
       <file leaf-file-name="CubY_Core.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cuby/CubY_Core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="218" column="41" lean-forward="false" selection-start-line="218" selection-start-column="41" selection-end-line="218" selection-end-column="41" />
+            <state relative-caret-position="-11">
+              <caret line="207" column="9" lean-forward="false" selection-start-line="207" selection-start-column="9" selection-end-line="207" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -90,7 +104,7 @@
       <file leaf-file-name="CubY_DOM.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cuby/CubY_DOM.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8086">
+            <state relative-caret-position="2953">
               <caret line="311" column="29" lean-forward="false" selection-start-line="311" selection-start-column="29" selection-end-line="311" selection-end-column="29" />
               <folding />
             </state>
@@ -105,16 +119,6 @@
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -143,11 +147,14 @@
         <option value="$PROJECT_DIR$/package-lock.json" />
         <option value="$PROJECT_DIR$/src/cuby/components/cardContainer.js" />
         <option value="$PROJECT_DIR$/src/styles/common.js" />
-        <option value="$PROJECT_DIR$/src/components/cardContainer.js" />
-        <option value="$PROJECT_DIR$/src/styles/colors.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/cuby/CubY_Core.js" />
+        <option value="$PROJECT_DIR$/src/styles/colors.js" />
+        <option value="$PROJECT_DIR$/src/components/cardContainer.js" />
+        <option value="$PROJECT_DIR$/src/services.js" />
+        <option value="$PROJECT_DIR$/src/services/Web.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/services/View.js" />
       </list>
     </option>
   </component>
@@ -240,6 +247,12 @@
               <item name="cuby-quick-start" type="b2602c69:ProjectViewProjectNode" />
               <item name="cuby-quick-start" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="services" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="cuby-quick-start" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cuby-quick-start" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="styles" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -259,13 +272,14 @@
     <property name="javascript.nodejs.core.library.configured.version" value="9.8.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="W:\cuby-quick-start\cuby-quick-start" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="W:\cuby-quick-start\src" />
       <recent name="W:\cuby-quick-start\src\cuby" />
       <recent name="W:\cuby-quick-start\cuby-quick-start\src" />
+      <recent name="W:\cuby-quick-start\cuby-quick-start" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="W:\cuby-quick-start\src" />
       <recent name="W:\cuby-quick-start\cuby-quick-start" />
     </key>
   </component>
@@ -340,12 +354,12 @@
       <workItem from="1533163680996" duration="998000" />
       <workItem from="1533165340919" duration="1819000" />
       <workItem from="1533167244598" duration="5713000" />
-      <workItem from="1533173585397" duration="585000" />
+      <workItem from="1533173585397" duration="3955000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10414000" />
+    <option name="totallyTimeSpent" value="13784000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -547,6 +561,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -558,34 +573,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cuby/CubY_DOM.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8086">
-          <caret line="311" column="29" lean-forward="false" selection-start-line="311" selection-start-column="29" selection-end-line="311" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/cardContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/colors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -608,14 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cuby/CubY_Core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="218" column="41" lean-forward="false" selection-start-line="218" selection-start-column="41" selection-end-line="218" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cuby/CubY_Routine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-572">
@@ -624,13 +607,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cuby/CubY_Core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="207" column="9" lean-forward="false" selection-start-line="207" selection-start-column="9" selection-end-line="207" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/colors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cuby/CubY_DOM.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2953">
+          <caret line="311" column="29" lean-forward="false" selection-start-line="311" selection-start-column="29" selection-end-line="311" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/cardContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Web.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1716">
+          <caret line="66" column="2" lean-forward="true" selection-start-line="66" selection-start-column="2" selection-end-line="66" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        <state relative-caret-position="-624">
+          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding>
             <element signature="e#47#78#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/View.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -5,10 +5,14 @@ import CubY from './cuby/CubY';
 import cardContainer from './components/cardContainer';
 import COLORS from './styles/colors';
 import COMMON_STYLE from './styles/common';
+import View from './services/View';
+import Web from './services/Web';
+CubY.addOn(View);
+CubY.addOn(Web);
 CubY.addOn(cardContainer);
 CubY.addOn(COMMON_STYLE);
 //Declare layout components
-let root = CubY.createElement('div', 'cuby_root', document.getElementById('app'))
+window.root = CubY.createElement('div', 'cuby_root', document.getElementById('app'))
     .style(CubY.ROOT_STYLE);
 
 let mainContentSection = CubY.createElement('div', 'mainContentSection')
@@ -35,27 +39,12 @@ root.appendElement(secondContentSection);
 
 mainContentSection.appendElement(mainCard);
 
-// Setup connection
+// Connect store to components and events
 
-CubY.connect('viewportSize').to(function (size) {
-    console.log(size.width);
-    if(size.width<=800) {
-        mainContentSection.style({
-            width: '100%'
-        })
-    }else{
-        mainContentSection.style({
-            width: '66.66%'
-        })
-    }
-});
+CubY.connect('viewportSize').to(CubY.resetMainContentSectionSize).belong(mainContentSection);
 
 //setup basic listener
-window.addEventListener('resize', function () {
-    let viewportSize = {
-        width: window.innerWidth,
-        height: window.innerHeight
-    };
-    CubY.storeValue('viewportSize', viewportSize);
-});
+window.addEventListener('resize', CubY.saveViewportSize);
 assetLoaded('main');
+
+//functions

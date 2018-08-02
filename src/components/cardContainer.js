@@ -8,7 +8,7 @@ const CARD_STYLE = {
     "right": "0",
     "bottom": "0",
     "margin": "auto",
-    "boxShadow": "0 0 4px 2px lightgrey"
+    "boxShadow": "lightgrey 0px 0px 1px 0px"
 };
 
 let card = {

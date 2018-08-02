@@ -1,4 +1,4 @@
 const COLORS ={
-    BACKGROUND_GRAY : '#ecf0f1',
+    BACKGROUND_GRAY : 'rgba(243,243,243,.85)',
 };
 Object.assign(window, COLORS);
