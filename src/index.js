@@ -33,4 +33,9 @@ root.appendElement(secondContentSection);
 
 mainContentSection.appendElement(mainCard);
 
+
+//setup basic listener
+window.addEventListener('resize', function () {
+
+});
 assetLoaded('main');
