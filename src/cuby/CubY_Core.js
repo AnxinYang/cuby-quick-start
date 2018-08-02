@@ -202,7 +202,11 @@ class CubY_Connector{
         return this;
     }
     run(newValue){
-        if(typeof this.action === 'function'){
+        if(this._reactTimer !== undefined){
+
+        }
+        this._reactTimer = setTimeout(
+            if(typeof this.action === 'function'){
             if(this.owner){
                 if(this.owner.isActive) {
                     this.action.call(this.owner, newValue);
