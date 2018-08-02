@@ -202,14 +202,21 @@ class CubY_Connector{
         return this;
     }
     run(newValue){
-        if(typeof this.action === 'function'){
-            if(this.owner){
-                if(this.owner.isActive) {
-                    this.action.call(this.owner, newValue);
-                }
-            }else {
-                this.action(newValue);
-            }
+        let self = this;
+        if(this._reactTimer !== undefined){
+            clearTimeout(this._reactTimer)
         }
+        this._reactTimer = setTimeout(function () {
+            if (typeof self.action === 'function') {
+                if (self.owner) {
+                    if (self.owner.isActive) {
+                        self.action.call(this.owner, newValue);
+                    }
+                } else {
+                    self.action(newValue);
+                }
+            }
+            self._reactTimer = undefined;
+        }, 50);
     }
 }
