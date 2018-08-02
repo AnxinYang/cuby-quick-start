@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76598220-c0f0-4a80-b669-47b9f30f276e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
       <change beforePath="$PROJECT_DIR$/src/cuby/CubY_Core.js" afterPath="$PROJECT_DIR$/src/cuby/CubY_Core.js" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/styles/colors.js" afterPath="$PROJECT_DIR$/src/styles/colors.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,8 +78,8 @@
       <file leaf-file-name="CubY_Core.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cuby/CubY_Core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="208" column="12" lean-forward="false" selection-start-line="208" selection-start-column="12" selection-end-line="208" selection-end-column="12" />
+            <state relative-caret-position="701">
+              <caret line="218" column="41" lean-forward="false" selection-start-line="218" selection-start-column="41" selection-end-line="218" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -341,12 +337,12 @@
       <workItem from="1533162909161" duration="752000" />
       <workItem from="1533163680996" duration="998000" />
       <workItem from="1533165340919" duration="1819000" />
-      <workItem from="1533167244598" duration="5553000" />
+      <workItem from="1533167244598" duration="5713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9669000" />
+    <option name="totallyTimeSpent" value="9829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -548,8 +544,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cuby/CubY_Core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="208" column="12" lean-forward="false" selection-start-line="208" selection-start-column="12" selection-end-line="208" selection-end-column="12" />
+        <state relative-caret-position="701">
+          <caret line="218" column="41" lean-forward="false" selection-start-line="218" selection-start-column="41" selection-end-line="218" selection-end-column="41" />
           <folding />
         </state>
       </provider>
