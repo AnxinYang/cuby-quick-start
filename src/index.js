@@ -21,11 +21,21 @@ CubY.getTodoList();
 window.root = CubY.createElement('div', 'cuby_root', document.getElementById('app'))
     .style(CubY.ROOT_STYLE);
 
+let headerContainer = CubY.createElement('div', 'headerContainer').content('Todo')
+    .style(CubY.HEADER_STYLE);
+
+let contentContainer = CubY.createElement('div', 'contentContainer').style({
+    position: 'relative',
+    minWidth: '300px',
+    display: 'flex',
+    flexGrow:1,
+    flexWrap: 'wrap',
+    transition:'0.2s',
+});
 let mainContentSection = CubY.createElement('div', 'mainContentSection')
     .style({
         position: 'relative',
         minWidth: '300px',
-        width:'66.66%',
         flexGrow: 1,
         transition:'0.2s'
     });
@@ -33,23 +43,26 @@ let secondContentSection = CubY.createElement('div', 'secondContentSection').sty
     position: 'relative',
     minWidth: '100px',
     flexGrow: 1,
-    transition:'0.2s'
+    transition:'0.2s',
 });
 
 let mainCard = CubY.createCard('mainCard');
-let secondCard = CubY.createCard('secondCard');
+let secondCard = CubY.createCard('secondCard')
+    .style('overflowX', 'hidden');
 
 // Place components
-root.appendElement(secondContentSection);
-root.appendElement(mainContentSection);
+root.appendElement(headerContainer);
+root.appendElement(contentContainer);
+contentContainer.appendElement(secondContentSection);
+contentContainer.appendElement(mainContentSection);
 
 
 mainContentSection.appendElement(mainCard);
 secondContentSection.appendElement(secondCard);
-
 // Connect store to components and events
 
 CubY.connect('viewportSize').to(CubY.resetMainContentSectionSize).belong(mainContentSection);
+CubY.saveViewportSize();
 CubY.connect('todoList').to(function () {
     CubY.createTodoList(secondCard);
 });

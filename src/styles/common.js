@@ -8,9 +8,10 @@ const COMMON_STYLE = {
         fontSize: '12px ',
         display: 'flex',
         minWidth: '300px',
-        flexWrap: 'wrap',
+        flexDirection:'column',
         background: BACKGROUND_GRAY,
         overflowX: 'hidden'
-    }
+    },
+    HEADER_STYLE: {"textAlign":"center","padding":"1em 0","background":BLUE,"color":"white","fontSize":"14px","fontWeight":"bold"}
 };
 export default COMMON_STYLE;

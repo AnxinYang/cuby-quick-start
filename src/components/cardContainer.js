@@ -1,7 +1,7 @@
 const CARD_STYLE = {
     "background": "white",
-    "height": "98%",
-    "width": "98%",
+    "height": "calc(100% - 1em)",
+    "width": "calc(100% - 1em)",
     "left": "0",
     "top": "0",
     "position": "absolute",
