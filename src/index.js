@@ -3,18 +3,19 @@
  */
 import $ from 'jquery';
 import CubY from './cuby/CubY';
-import cardContainer from './components/cardContainer';
-import todoList from './components/todoList';
 import COLORS from './styles/colors';
 import COMMON_STYLE from './styles/common';
+import cardContainer from './components/cardContainer';
+import todoList from './components/todoList';
 import View from './services/View';
 import Web from './services/Web';
 window.$ = $
+CubY.addOn(COMMON_STYLE);
 CubY.addOn(View);
 CubY.addOn(Web);
 CubY.addOn(cardContainer);
 CubY.addOn(todoList);
-CubY.addOn(COMMON_STYLE);
+
 //Init loadding
 CubY.getTodoList();
 //Declare layout components
@@ -49,6 +50,16 @@ let secondContentSection = CubY.createElement('div', 'secondContentSection').sty
 let mainCard = CubY.createCard('mainCard');
 let secondCard = CubY.createCard('secondCard')
     .style('overflowX', 'hidden');
+let addButton = CubY.createElement('button', 'addButton')
+    .content('New')
+    .style({"width":"100%","background":"rgb(0, 99, 204)","border":"none","borderBottom":"1px solid rgba(243, 243, 243, 0.85)","padding":"0.5em 0","color":"white","cursor":"pointer"})
+    .on('click', function () {
+        let data = {
+            title: 'New Todo',
+            detail: ''
+        };
+        CubY.createNewTodo(data);
+    });
 
 // Place components
 root.appendElement(headerContainer);
@@ -59,12 +70,20 @@ contentContainer.appendElement(mainContentSection);
 
 mainContentSection.appendElement(mainCard);
 secondContentSection.appendElement(secondCard);
+
+secondCard.appendElement(addButton);
 // Connect store to components and events
 
 CubY.connect('viewportSize').to(CubY.resetMainContentSectionSize).belong(mainContentSection);
 CubY.saveViewportSize();
 CubY.connect('todoList').to(function () {
+    secondCard.remove('div');
     CubY.createTodoList(secondCard);
+});
+CubY.connect('currentTodo').to(function (id) {
+    mainCard.remove('input');
+    mainCard.remove('textarea');
+    CubY.createTododetail(mainCard, id);
 });
 
 //setup basic listener

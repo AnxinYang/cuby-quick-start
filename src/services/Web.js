@@ -8,8 +8,8 @@ var Web_Port = {
         $.ajax({
             url: url,
             type: method,
-            crossDomain: true,
             async: settings.async || true,
+            crossDomain: true,
             contentType: settings.contentType || "application/json; charset=utf-8",
             data: JSON.stringify(data),
             dataType: settings.dataType || "json",

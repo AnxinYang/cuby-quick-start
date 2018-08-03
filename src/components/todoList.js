@@ -13,8 +13,60 @@ const LIST_ITEM_CONTAINER_STYLE = {
     textOverflow: 'ellipsis',
     overflow: 'hidden'
 };
-
+const TODO_TITLE_INPUT_STYLE = {
+    fontSize: '15px',
+    fontWeight: 'bold',
+    border:'none',
+    borderBottom: '1px solid lightgray',
+    width: 'calc(100% - 2em)',
+    color: BLACK,
+    margin: '0.5em',
+    paddingLeft: '1em',
+    "outline": "none",
+    "WebkitBoxShadow": "none",
+    "MozBoxShadow": "none",
+    "boxShadow": "none",
+};
+const TODO_DETAIL_TEXTAREA_STYLE = {
+    width: 'calc(100% - 2em)',
+    height: '100%',
+    "border": "none",
+    "overflow": "auto",
+    "outline": "none",
+    "WebkitBoxShadow": "none",
+    "MozBoxShadow": "none",
+    "boxShadow": "none",
+    margin: '0.5em',
+    paddingLeft: '1em',
+};
 let todoList = {
+    setCurrentTodo: function (id, component) {
+        let currentSelectedComponent =  CubY.getValue('currentSelectedComponent');
+        currentSelectedComponent && currentSelectedComponent.style({
+            'background': '',
+            "borderLeft": ""
+        });
+        component.style("borderLeft","4px solid rgb(0, 99, 204)");
+        CubY.getTodoList(id);
+        CubY.storeValue('currentTodo', id);
+        CubY.storeValue('currentSelectedComponent', component, {overwrite: true});
+    },
+    createTododetail: function (container, id) {
+        let item = CubY.getValue(id);
+        let title = CubY.createElement('input')
+            .style(TODO_TITLE_INPUT_STYLE)
+            .attr('maxlength', 32)
+            .attr('placeholder', 'Title')
+            .prop('value', item.title);
+        let detail = CubY.createElement('textarea')
+            .style(TODO_DETAIL_TEXTAREA_STYLE)
+            .attr('placeholder', 'Enter details...')
+            .attr('maxlength', 5000)
+            .prop('value', item.detail);
+
+        container.appendElement(title);
+        container.appendElement(detail);
+    },
     createTodoList: function (container) {
         let data = CubY.getValue('todoList') || [];
         data.forEach(function (item) {
@@ -25,15 +77,10 @@ let todoList = {
     createTodoListItem: function (item) {
         let _item = item;
         let component = CubY.createElement('div', _item.id).style(LIST_ITEM_CONTAINER_STYLE)
+            .style("borderLeft",CubY.getValue('currentTodo')===item.id?"4px solid rgb(0, 99, 204)":'')
+            .style('background', CubY.getValue('currentTodo')===item.id?'#eee':'')
             .on('click', function (e) {
-                let currentSelectedComponent =  CubY.getValue('currentSelectedComponent');
-                currentSelectedComponent && currentSelectedComponent.style({
-                    'background': '',
-                    "borderLeft": ""
-                });
-                component.style("borderLeft","0.5em solid rgb(0, 99, 204)");
-                CubY.storeValue('currentTodo', _item.id);
-                CubY.storeValue('currentSelectedComponent', component, {overwrite: true});
+                CubY.setCurrentTodo(_item.id, component);
             })
             .on('mouseenter',function () {
                 this.style('background', '#eee')
@@ -42,6 +89,9 @@ let todoList = {
                 let currentTodo =  CubY.getValue('currentTodo');
                 this.style('background', currentTodo===item.id?'#eee':'')
             });
+        if(CubY.getValue('currentTodo')===item.id){
+            CubY.setCurrentTodo(_item.id, component);
+        }
         let componentContent = component.append('div')
             .content(item.title);
 
