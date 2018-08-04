@@ -210,7 +210,7 @@ class CubY_Connector{
             if (typeof self.action === 'function') {
                 if (self.owner) {
                     if (self.owner.isActive) {
-                        self.action.call(this.owner, newValue);
+                        self.action.call(self.owner, newValue);
                     }
                 } else {
                     self.action(newValue);
