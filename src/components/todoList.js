@@ -29,7 +29,7 @@ const TODO_TITLE_INPUT_STYLE = {
 };
 const TODO_DETAIL_TEXTAREA_STYLE = {
     width: 'calc(100% - 2em)',
-    height: '100%',
+    height: 'calc(100% - 4em)',
     "border": "none",
     "overflow": "auto",
     "outline": "none",
@@ -57,12 +57,34 @@ let todoList = {
             .style(TODO_TITLE_INPUT_STYLE)
             .attr('maxlength', 32)
             .attr('placeholder', 'Title')
-            .prop('value', item.title);
+            .prop('value', item.title)
+            .on('keyup', function () {
+                item.title = this.dom.value;
+                CubY.storeValue(item.id, {detail:item.title});
+                if(this.saveTimer){
+                    clearTimeout(this.saveTimer);
+                }
+                this.saveTimer = setTimeout(function () {
+                    CubY.updateTodo(item);
+                    self.saveTimer = undefined;
+                }, 1000);
+            });
         let detail = CubY.createElement('textarea')
             .style(TODO_DETAIL_TEXTAREA_STYLE)
             .attr('placeholder', 'Enter details...')
             .attr('maxlength', 5000)
-            .prop('value', item.detail);
+            .prop('value', item.detail)
+            .on('keyup', function () {
+                item.detail = this.dom.value;
+                CubY.storeValue(item.id, {detail:item.detail});
+                if(this.saveTimer){
+                    clearTimeout(this.saveTimer);
+                }
+                this.saveTimer = setTimeout(function () {
+                    CubY.updateTodo(item);
+                    self.saveTimer = undefined;
+                }, 1000);
+            });;
 
         container.appendElement(title);
         container.appendElement(detail);
@@ -95,6 +117,9 @@ let todoList = {
         let componentContent = component.append('div')
             .content(item.title);
 
+        CubY.connect(_item.id).to(function (updated) {
+            componentContent.content(updated.title);
+        });
 
         return component;
     }

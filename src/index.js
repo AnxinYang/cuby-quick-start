@@ -47,6 +47,19 @@ let secondContentSection = CubY.createElement('div', 'secondContentSection').sty
     transition:'0.2s',
 });
 
+let hint = secondContentSection.append('span', 'todoHint')
+    .style(
+        {
+            color: 'lightgray',
+            position: 'absolute',
+            bottom: '1em',
+            right: '4em',
+            opacity: 0,
+            transition: '0.2s'
+        }
+    )
+    .content('Saved');
+
 let mainCard = CubY.createCard('mainCard');
 let secondCard = CubY.createCard('secondCard')
     .style('overflowX', 'hidden');
@@ -85,6 +98,18 @@ CubY.connect('currentTodo').to(function (id) {
     mainCard.remove('textarea');
     CubY.createTododetail(mainCard, id);
 });
+
+CubY.connect('hint').to(function (_hint) {
+    let self = this;
+    hint.content(_hint).style('opacity', 1);
+    if(this.hintTimer){
+        clearTimeout(this.hintTimer);
+    }
+    this.hintTimer = setTimeout(function () {
+        hint.style('opacity', 0);
+        self.hintTimer = undefined;
+    }, 3000)
+}).belong(secondContentSection);
 
 //setup basic listener
 window.addEventListener('resize', CubY.saveViewportSize);
