@@ -47,15 +47,18 @@ let secondContentSection = CubY.createElement('div', 'secondContentSection').sty
     transition:'0.2s',
 });
 
-let hint = secondContentSection.append('span', 'todoHint')
+let hint = mainContentSection.append('span', 'todoHint')
     .style(
         {
-            color: 'lightgray',
+            color: 'gray',
             position: 'absolute',
             bottom: '1em',
-            right: '4em',
+            right: 0,
+            left: 0,
             opacity: 0,
-            transition: '0.2s'
+            transition: '0.2s',
+            zIndex: 10,
+            textAlign: 'center'
         }
     )
     .content('Saved');
@@ -109,7 +112,7 @@ CubY.connect('hint').to(function (_hint) {
         hint.style('opacity', 0);
         self.hintTimer = undefined;
     }, 3000)
-}).belong(secondContentSection);
+}).belong(mainContentSection);
 
 //setup basic listener
 window.addEventListener('resize', CubY.saveViewportSize);
