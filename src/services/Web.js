@@ -28,7 +28,7 @@ var Web_Port = {
             if(typeof callback === 'function')callback(response, textStatus, xhr)
         })
     },
-    baseUrl: 'http://anxinyang.us/php/api/todo/',
+    baseUrl: 'https://anxinyang.us/php/api/todo/',
 
     getTodoList: function(id, callback){
         CubY.request('get', undefined, CubY.baseUrl + 'read.php'+ (id!==undefined?('?id='+id):''),undefined, function (response, textStatus, xhr) {
