@@ -17,16 +17,13 @@ CubY.addOn(cardContainer);
 CubY.addOn(todoList);
 
 //Init loadding
-
+CubY.getTodoList();
 //Declare layout components
 window.root = CubY.createElement('div', 'cuby_root', document.getElementById('app'))
     .style(CubY.ROOT_STYLE);
 
-let headerContainer = CubY.createElement('div', 'headerContainer').content('Todo')
-    .style(CubY.HEADER_STYLE)
-    .on('click',function () {
-        CubY.getTodoList();
-    });
+let headerContainer = CubY.createElement('div', 'headerContainer')
+    .style(CubY.HEADER_STYLE);
 
 let contentContainer = CubY.createElement('div', 'contentContainer').style({
     position: 'relative',
@@ -70,14 +67,28 @@ let mainCard = CubY.createCard('mainCard');
 let secondCard = CubY.createCard('secondCard')
     .style('overflowX', 'hidden');
 let addButton = CubY.createElement('button', 'addButton')
-    .content('New')
-    .style({"width":"100%","background":"rgb(0, 99, 204)","border":"none","borderBottom":"1px solid rgba(243, 243, 243, 0.85)","padding":"0.5em 0","color":"white","cursor":"pointer"})
-    .on('click', function () {
-        let data = {
-            title: 'New Todo',
-            detail: ''
-        };
-        CubY.createNewTodo(data);
+    .appendClass('fas')
+    .appendClass('fa-plus')
+    .style(CubY.ADD_BUTTON_STYLE)
+    .on('click', CubY.createNewTodo);
+
+let appTitle = CubY.createElement('button', 'appTitle')
+    .content('Todo')
+    .style(CubY.REFRESH_BUTTON_STYLE)
+    .style({
+        'marginRight': '',
+        'fontWeight': 'bold'
+    })
+    .on('click',function () {
+       // Add some features?
+    });
+
+let refreshButton = CubY.createElement('button', 'refreshButton')
+    .appendClass('fas')
+    .appendClass('fa-retweet')
+    .style(CubY.REFRESH_BUTTON_STYLE)
+    .on('click',function () {
+        CubY.getTodoList();
     });
 
 // Place components
@@ -90,7 +101,9 @@ contentContainer.appendElement(mainContentSection);
 mainContentSection.appendElement(mainCard);
 secondContentSection.appendElement(secondCard);
 
-secondCard.appendElement(addButton);
+headerContainer.appendElement(addButton);
+headerContainer.appendElement(appTitle);
+headerContainer.appendElement(refreshButton);
 // Connect store to components and events
 
 CubY.connect('viewportSize').to(CubY.resetMainContentSectionSize).belong(mainContentSection);

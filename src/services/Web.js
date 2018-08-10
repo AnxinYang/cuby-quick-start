@@ -44,8 +44,13 @@ var Web_Port = {
             }
         });
     },
-    createNewTodo: function (data) {
-        data.ref = Math.random()*10000 + '.' + Date.now();
+    createNewTodo: function () {
+        let data = {
+            title: 'New Todo',
+            detail: '',
+            ref : Math.random()*10000 + '.' + Date.now()
+        };
+
         CubY.request('post', data, CubY.baseUrl + 'create.php',undefined, function (response, textStatus, xhr) {
             if(response.message === 'Created'){
                 CubY.getTodoList(undefined,function () {
