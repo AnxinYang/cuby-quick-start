@@ -81,7 +81,10 @@ class CubY_Core{
         callback(_array, itemList);
         return itemList;
     };
-
+    setValue(key, value, ...options){
+        let {overwrite, callback, forceReact} = options;
+        debugger;
+    }
     storeValue(_key, _value, _options, _callback) {
         var options = _options || {};
         var store = this.dataMap;
