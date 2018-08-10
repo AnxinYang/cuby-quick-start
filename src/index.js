@@ -23,7 +23,8 @@ window.root = CubY.createElement('div', 'cuby_root', document.getElementById('ap
     .style(CubY.ROOT_STYLE);
 
 let headerContainer = CubY.createElement('div', 'headerContainer').content('Todo')
-    .style(CubY.HEADER_STYLE);
+    .style(CubY.HEADER_STYLE)
+    .on('click', CubY.getTodoList);
 
 let contentContainer = CubY.createElement('div', 'contentContainer').style({
     position: 'relative',
