@@ -1,7 +1,7 @@
 module.exports = {
-    entry: [
-        './src/index.js'
-    ],
+    entry: {
+        main:'./src/index.js'
+    },
     node: {
         fs: 'empty',
         child_process: 'empty'
