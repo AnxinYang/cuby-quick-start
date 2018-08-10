@@ -12,6 +12,6 @@ const COMMON_STYLE = {
         background: BACKGROUND_GRAY,
         overflowX: 'hidden'
     },
-    HEADER_STYLE: {"textAlign":"center","padding":"1em 0","background":BLUE,"color":"white","fontSize":"14px","fontWeight":"bold"}
+    HEADER_STYLE: {"textAlign":"center","padding":"1em 0","background":BLUE,"color":"white","fontSize":"14px","fontWeight":"bold", cursor: "pointer"}
 };
 export default COMMON_STYLE;

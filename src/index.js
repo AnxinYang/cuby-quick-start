@@ -17,14 +17,16 @@ CubY.addOn(cardContainer);
 CubY.addOn(todoList);
 
 //Init loadding
-CubY.getTodoList();
+
 //Declare layout components
 window.root = CubY.createElement('div', 'cuby_root', document.getElementById('app'))
     .style(CubY.ROOT_STYLE);
 
 let headerContainer = CubY.createElement('div', 'headerContainer').content('Todo')
     .style(CubY.HEADER_STYLE)
-    .on('click', CubY.getTodoList);
+    .on('click',function () {
+        CubY.getTodoList();
+    });
 
 let contentContainer = CubY.createElement('div', 'contentContainer').style({
     position: 'relative',
