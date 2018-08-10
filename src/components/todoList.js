@@ -60,7 +60,7 @@ let todoList = {
             .prop('value', item.title)
             .on('keyup', function () {
                 item.title = this.dom.value;
-                CubY.storeValue(item.id, {detail:item.title});
+                CubY.storeValue(item.id, {title:item.title});
                 if(this.saveTimer){
                     clearTimeout(this.saveTimer);
                 }
