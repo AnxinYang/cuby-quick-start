@@ -4,7 +4,7 @@
 class CubY_DOM {
     constructor(_tag,_id,_root) {
         this.tag = this.readValue(_tag) || 'div';
-        this.id = this.readValue(_id)|| this.tag + '_' + Math.random()*10000+'_'+Date.now();
+        this.id = this.readValue(_id)|| this.tag + '_' + CubY.createID();
         this.dom = document.createElement(this.tag);
         this.dom.setAttribute('id',this.id);
         this.childrenList = [];
@@ -16,6 +16,7 @@ class CubY_DOM {
         this.parent;
         this.classes = [];
         this.root(_root);
+        this.hasInit = false;
 
         let self = this;
         this.updater = function (name) {
@@ -282,6 +283,7 @@ class CubY_DOM {
         if(this.attribute.activated){
             this.attribute.activated.call(this);
         }
+        this.hasInit = true;
     }
     deactivated(){
         this.isActive = false;

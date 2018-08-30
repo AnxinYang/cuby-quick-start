@@ -15,6 +15,8 @@ var CubY = {
     debug: CubY_Core.debug.bind(CubY_Core),
     readValue: CubY_Core.readValue.bind(CubY_Core),
     isObjectEmpty: CubY_Core.isObjectEmpty.bind(CubY_Core),
+    createID: CubY_Core.createID.bind(CubY_Core),
+
 
     //DOM
     createElement: CubY_DOM.createElement,

@@ -159,6 +159,15 @@ class CubY_Core{
         return true;
     }
 
+    createID() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    }
+
     debug(str) {
         if(this.getValue('DEBUG_MODE')){
             console.log('DEBUG: ' + str);
