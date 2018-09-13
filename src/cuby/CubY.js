@@ -10,6 +10,7 @@ var CubY = {
     getBrowser: CubY_Core.getBrowser.bind(CubY_Core),
     storeDataArray: CubY_Core.storeDataArray.bind(CubY_Core),
     storeValue: CubY_Core.storeValue.bind(CubY_Core),
+    setValue: CubY_Core.setValue.bind(CubY_Core),
     connect: CubY_Core.connect.bind(CubY_Core),
     react: CubY_Core.react.bind(CubY_Core),
     debug: CubY_Core.debug.bind(CubY_Core),

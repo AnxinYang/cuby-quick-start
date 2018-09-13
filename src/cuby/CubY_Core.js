@@ -42,6 +42,13 @@ class CubY_Core{
                 }
                 return output;
             };
+            if (!('remove' in Element.prototype)) {
+                Element.prototype.remove = function() {
+                    if (this.parentNode) {
+                        this.parentNode.removeChild(this);
+                    }
+                };
+            }
             isIE =true;
             return 'ie';
         }
@@ -81,14 +88,13 @@ class CubY_Core{
         callback(_array, itemList);
         return itemList;
     };
-    setValue(key, value, ...options){
-        let {overwrite, callback, forceReact} = options;
-        debugger;
+    setValue(key, value){
+       this.storeValue(key, value,{overwrite:true})
     }
     storeValue(_key, _value, _options, _callback) {
         var options = _options || {};
         var store = this.dataMap;
-        var key = _key;
+        var key = ''+_key;
         var callback = _callback || EMPTY_FUNCTION;
         var newValue = _value;
         var item = store[key];
@@ -107,21 +113,18 @@ class CubY_Core{
         }
         return item;
     };
-    getValue(_key, caseSensitive) {
-        var key = _key || '';
-        if(caseSensitive!==false){
-            return this.dataMap[key];
-        }else{
-            for(var K in this.dataMap){
-                if(this.dataMap.hasOwnProperty(K)){
-                    if(K.toLowerCase()===key.toLowerCase()){
-                        return this.dataMap[K];
-                    }
-                }
-            }
-            return undefined;
+    getValue(key, options) {
+        let _key = key || '' ;
+        _key = '' + key;
+        let selector = _key.charAt(0);
+        let name = _key.substring(1);
+        switch (selector){
+            case '#':
+                let id = this.getValue(name);
+                return this.getValue(id);
+            default:
+                return this.dataMap[_key];
         }
-
     };
 
     connect(_key){

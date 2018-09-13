@@ -141,6 +141,18 @@ class CubY_DOM {
         this.classes = classes;
         return this;
     }
+    removeClass(_className){
+        let className = this.readValue(_className);
+        let classes = this.classes || [];
+        let index = classes.indexOf(className);
+        if(index < 0){
+            return this;
+        }
+        classes.splice(index, 1);
+        this.dom.classList.remove(className);
+        this.classes = classes;
+        return this;
+    }
     select(_selector){
         let selector = _selector.charAt(0);
         let name = _selector.substring(1);
