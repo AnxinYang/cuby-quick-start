@@ -51,13 +51,16 @@ class CubY_DOM {
         this.appendElement(element);
         return element;
     }
-    appendElement(CubY_DOM){
+    appendElement(CubY_DOM) {
+        if (CubY_DOM === undefined) {
+            return;
+        }
         let element = this.readValue(CubY_DOM);
         element.parent = this;
 
         this.childrenList.push(element);
         this.dom.appendChild(element.dom);
-        if(this.isActive || this.isRoot) {
+        if (this.isActive || this.isRoot) {
             element.activated();
         }
         return element;
@@ -72,7 +75,7 @@ class CubY_DOM {
             return this;
         }
 
-        if(key ==='activated' || key === 'deactivated'){
+        if(key === 'init' || key ==='activated' || key === 'deactivated'){
             value = _value;
         }else{
             value = this.readValue(_value);
@@ -292,6 +295,9 @@ class CubY_DOM {
             child.activated();
         });
 
+        if(this.attribute.init !== undefined && !this.hasInit){
+            this.attribute.init.call(this)
+        }
         if(this.attribute.activated){
             this.attribute.activated.call(this);
         }

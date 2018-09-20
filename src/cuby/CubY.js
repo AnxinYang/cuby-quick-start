@@ -17,6 +17,8 @@ var CubY = {
     readValue: CubY_Core.readValue.bind(CubY_Core),
     isObjectEmpty: CubY_Core.isObjectEmpty.bind(CubY_Core),
     createID: CubY_Core.createID.bind(CubY_Core),
+    getCallerName: CubY_Core.getCallerName.bind(CubY_Core),
+    server: CubY_Core.server.bind(CubY_Core),
 
 
     //DOM
@@ -35,7 +37,7 @@ var CubY = {
       }
     },
     //Other
-    version: '0.6b.ne.0.10',
+    version: '0.8b.ne.0.10',
     debugInfo: [CubY_Core,CubY_Routine]
 };
 

@@ -1,3 +1,5 @@
+import CubY from "./CubY";
+
 const EMPTY_FUNCTION = ()=>{};
 class CubY_Core{
     constructor(_props){
@@ -13,7 +15,19 @@ class CubY_Core{
         this.browser = this.getBrowser();
         window.cc = this;
     }
-
+    getCallerName(){
+        // Include this function just for fun
+        console.warn('[Non-standard]: This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.')
+        try {
+            let str = new Error().stack.toString();
+            let array = str.split('at');
+            let name = array[3];
+            name = (name.split(' '))[1];
+            return name;
+        }catch (e){
+            console.warn('[getCallName] feature is not supported in this client: ' + this.getBrowser())
+        }
+    }
     getBrowser(){
         let isIE = false;
         let isChrome = false;
@@ -75,7 +89,7 @@ class CubY_Core{
 
         array.forEach(function (_item) {
             var key = _item[idKey];
-            if (key === undefined || self.readValue(options.skipFun, _item)) {
+            if (key === undefined) {
                 return;
             }
 
@@ -89,7 +103,7 @@ class CubY_Core{
         return itemList;
     };
     setValue(key, value){
-       this.storeValue(key, value,{overwrite:true})
+       this.storeValue(key, value,{overwrite:true, forceReact: true})
     }
     storeValue(_key, _value, _options, _callback) {
         var options = _options || {};
@@ -142,12 +156,13 @@ class CubY_Core{
             }
         }
     }
-    readValue(_value, data){
-        let value = _value;
-        if(typeof value === "function"){
-            return value.call(this,data);
+    readValue(value, defaultValue){
+        let _value = value;
+        if(typeof _value === "function"){z
+            let output = _value();
+            return output !== undefined ? output : defaultValue;
         }else{
-            return value;
+            return _value !== undefined ? _value : defaultValue;
         }
     }
     isObjectEmpty(obj){
@@ -176,6 +191,42 @@ class CubY_Core{
             console.log('DEBUG: ' + str);
         }
     };
+
+    server(params) {
+        let {url, method, payload, ref, async, contentType, dataType, callback} = params || {};
+        ref = this.getValue('currentRef');
+        $.ajax({
+            url: url,
+            type: method || 'get',
+            async: async || true,
+            contentType: contentType || "application/json; charset=utf-8",
+            crossDomain: true,
+            data: JSON.stringify(payload),
+            dataType: dataType || "json",
+            beforeSend: function (xhr) {
+                CubY.setValue('loading', true);
+                if (CubY.getValue('Authorization')) {
+                    xhr.setRequestHeader("Authorization", CubY.getValue('Authorization'));
+                }
+            },
+
+        }).done(function (response, textStatus, xhr) {
+            CubY.setValue('loading', false);
+            if(ref !== undefined && ref !== CubY.getValue('currentRef') ){
+                return;
+            }
+            if(typeof callback === 'function')callback(true, response, textStatus, xhr)
+        }).fail(function (response, textStatus, xhr) {
+            CubY.setValue('loading', false);
+            if(response.status === 401){
+                CubY.storeValue('Authorized', false);
+            }
+            if(ref !== undefined && ref !== CubY.getValue('currentRef') ){
+                return;
+            }
+            if(typeof callback === 'function')callback(false, response, textStatus, xhr)
+        })
+    };
 }
 const _CubY_Core = new CubY_Core();
 export default _CubY_Core;
@@ -183,7 +234,7 @@ export default _CubY_Core;
 class CubY_Connector{
     constructor(key, core){
         let self = this;
-        this.id =  'connector_' + Math.random()*10000 +'_'+Date.now();
+        this.id =  'connector-' + CubY.createID();
         this.bindingKey = key;
 
         this.insert = function () {
@@ -232,6 +283,6 @@ class CubY_Connector{
                 }
             }
             self._reactTimer = undefined;
-        }, 50);
+        }, 25);
     }
 }
