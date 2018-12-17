@@ -3,8 +3,11 @@ import CDOM from './CubY_DOM';
 import CubY_Routine from './CubY_Routine';
 import CubY_Module from './CubY_Module';
 import CubY_XHR from './CubY_XHR';
+import CubY_RAF from './CubY_RAF';
 const EMPTY_FUNCTION = ()=>{};
 
+
+CubY_RAF.content();
 
 function CubY (config) {
     let Core = new CubY_Core(config);

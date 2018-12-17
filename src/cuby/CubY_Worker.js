@@ -2,7 +2,7 @@
  * Created by Anxin Yang on 11/28/2018.
  */
 import localWorker from '../services/Worker';
-import raf from '../services/raf';
+import raf from '../cuby/CubY_RAF';
 
 function createWorkerID() {
     function s4() {
