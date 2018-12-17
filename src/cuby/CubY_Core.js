@@ -1,20 +1,19 @@
-import CubY from "./CubY";
-
 const EMPTY_FUNCTION = ()=>{};
 class CubY_Core{
-    constructor(_props){
-        let props = props || {};
+    constructor(props = {}){
         let self = this;
         this.init(props);
     }
 
-    init(_props){
-        let props = _props || {};
+    init(props) {
+        let self = this;
         this.dataMap = {};
         this.connectionMap = {};
         this.browser = this.getBrowser();
-        window.cc = this;
+        window.ccaxy = this;
+        this.setupDebugger(props);
     }
+
     getCallerName(){
         // Include this function just for fun
         console.warn('[Non-standard]: This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.')
@@ -77,33 +76,32 @@ class CubY_Core{
             return 'blink';
         }
     }
-
-    storeDataArray(_array, _idKey, _itemProcessor, _options, _callback) {
+    storeArray(array = [], options = {}){
         var self = this;
-        var options = _options || {};
-        var idKey = _idKey || 'id';
-        var callback = _callback || EMPTY_FUNCTION;
-        var array = _array || [];
+        let {idKey, callback, pre, post} = options;
+        idKey = idKey || 'id';
         var itemList = [];
-        var itemProcessor = _itemProcessor || EMPTY_FUNCTION;
-
         array.forEach(function (_item) {
             var key = _item[idKey];
+            let item = _item;
             if (key === undefined) {
                 return;
             }
-
-            var item = self.storeValue(key, _item, _options);
-
-            itemProcessor(item);
+            if(pre){
+                item = pre(_item)
+            }
+            item = self.storeValue(key, item, options);
+            if(post) {
+                post(item);
+            }
             itemList.push(item);
         });
 
-        callback(_array, itemList);
+        callback && callback(array, itemList);
         return itemList;
-    };
+    }
     setValue(key, value){
-       this.storeValue(key, value,{overwrite:true, forceReact: true})
+       return this.storeValue(key, value,{overwrite:true, forceReact: true})
     }
     storeValue(_key, _value, _options, _callback) {
         var options = _options || {};
@@ -142,23 +140,27 @@ class CubY_Core{
     };
 
     connect(_key){
-        let newConector = new CubY_Connector(_key, this);
-        return newConector;
+        if(_key === undefined){
+            console.error('[Violation]: Cannot create a connector with a invalid key.');
+            return undefined;
+        }
+        return new CubY_Connector(_key, this);
     }
     react(key){
         var self = this;
         var connectionMap = this.connectionMap;
         var connectorMap = connectionMap[key] || {};
         var newValue = self.getValue(key);
+        let counter = 0;
         for(var id in connectorMap){
             if(connectorMap.hasOwnProperty(id)){
-                connectorMap[id].run(newValue)
+                connectorMap[id].run(newValue);
             }
         }
     }
     readValue(value, defaultValue){
         let _value = value;
-        if(typeof _value === "function"){z
+        if(typeof _value === "function"){
             let output = _value();
             return output !== undefined ? output : defaultValue;
         }else{
@@ -186,61 +188,101 @@ class CubY_Core{
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
-    debug(str) {
-        if(this.getValue('DEBUG_MODE')){
-            console.log('DEBUG: ' + str);
+    setupDebugger(props){
+        let {DEBUG_MODE, DEBUG_TAGS} = props || {};
+        let debugTags = DEBUG_TAGS || [];
+        switch (DEBUG_MODE) {
+            case 1:
+                window.ccsyslog = [];
+                this.debug = function (str, options = {}) {
+                    let {type, tag} = options;
+                    ccsyslog.push('[' + (type || 'log') + '] ' + '[' + (tag || 'LOG') + '] ' + str);
+                };
+                break;
+            case 2:
+                // this.debug = function (str, options = {}) {
+                //     let {type, tag} = options;
+                //     if(debugTags.length ===0 || debugTags.indexOf(tag)>-1) {
+                //         console[(type || 'log')]('[' + (tag || 'LOG') + '] ' + str);
+                //     }
+                //
+                // };
+                this.debug = function (str, options = {}) {
+                    let {type, tag, detail} = options;
+                    let payload ={
+                        task: 'debug',
+                        data:{
+                            str: str,
+                            type: type,
+                            tag: tag,
+                            DEBUG_TAGS: DEBUG_TAGS,
+                            DEBUG_MODE:DEBUG_MODE,
+                        },
+                    };
+                    cw.sent(payload);
+                    // if(debugTags.length ===0 || debugTags.indexOf(tag)>-1) {
+                    //     console[(type || 'log')]('[' + (tag || 'LOG') + '] ' + str + (detail ? ('\nDetail:\n' + detail) : ''));
+                    // }
+                };
+                break;
+            case 3:
+                // this.debug = function (str, options = {}) {
+                //     let {type, tag, detail} = options;
+                //     if(debugTags.length ===0 || debugTags.indexOf(tag)>-1) {
+                //         console[(type || 'log')]('[' + (tag || 'LOG') + '] ' + str + (detail ? ('\nDetail:\n' + detail) : ''));
+                //     }
+                // };
+                this.debug = function (str, options = {}) {
+                    let {type, tag, detail} = options;
+                    let payload ={
+                        task: 'debug',
+                        data:{
+                            str: str,
+                            type: type,
+                            tag: tag,
+                            detail: (detail && detail.toString()) || undefined,
+                            DEBUG_TAGS: DEBUG_TAGS,
+                            DEBUG_MODE:DEBUG_MODE,
+                        },
+                    };
+                    cw.sent(payload);
+                    // if(debugTags.length ===0 || debugTags.indexOf(tag)>-1) {
+                    //     console[(type || 'log')]('[' + (tag || 'LOG') + '] ' + str + (detail ? ('\nDetail:\n' + detail) : ''));
+                    // }
+                };
+                break;
+            default:
+                this.debug = ()=>{};
+                break;
+
         }
-    };
+    }
 
-    server(params) {
-        let {url, method, payload, ref, async, contentType, dataType, callback} = params || {};
-        ref = this.getValue('currentRef');
-        $.ajax({
-            url: url,
-            type: method || 'get',
-            async: async || true,
-            contentType: contentType || "application/json; charset=utf-8",
-            crossDomain: true,
-            data: JSON.stringify(payload),
-            dataType: dataType || "json",
-            beforeSend: function (xhr) {
-                CubY.setValue('loading', true);
-                if (CubY.getValue('Authorization')) {
-                    xhr.setRequestHeader("Authorization", CubY.getValue('Authorization'));
-                }
-            },
-
-        }).done(function (response, textStatus, xhr) {
-            CubY.setValue('loading', false);
-            if(ref !== undefined && ref !== CubY.getValue('currentRef') ){
-                return;
-            }
-            if(typeof callback === 'function')callback(true, response, textStatus, xhr)
-        }).fail(function (response, textStatus, xhr) {
-            CubY.setValue('loading', false);
-            if(response.status === 401){
-                CubY.storeValue('Authorized', false);
-            }
-            if(ref !== undefined && ref !== CubY.getValue('currentRef') ){
-                return;
-            }
-            if(typeof callback === 'function')callback(false, response, textStatus, xhr)
-        })
-    };
 }
-const _CubY_Core = new CubY_Core();
-export default _CubY_Core;
+
 
 class CubY_Connector{
     constructor(key, core){
         let self = this;
         this.id =  'connector-' + CubY.createID();
         this.bindingKey = key;
+        this._freq = 32;
 
         this.insert = function () {
             var connectorMap = core.connectionMap[self.bindingKey] || {};
             connectorMap[self.id] = self;
             core.connectionMap[self.bindingKey] = connectorMap;
+
+            if(core.DEBUG_MODE){
+                let counter = 0
+                for(var key in connectorMap){
+                    if(connectorMap.hasOwnProperty(key)){
+                        counter++;
+                    }
+                }
+                CubY.debug('KEY: '+ self.bindingKey + ' CONNECT #: ' +counter);
+            }
+
         };
         this.remove = function () {
             try {
@@ -267,22 +309,40 @@ class CubY_Connector{
         owner.connectionList.push(this);
         return this;
     }
+    freq(ms){
+        this._freq = ms;
+        return this;
+    }
     run(newValue){
         let self = this;
         if(this._reactTimer !== undefined){
-            clearTimeout(this._reactTimer)
+            cw.clearTimer(this._reactTimer)
         }
-        this._reactTimer = setTimeout(function () {
-            if (typeof self.action === 'function') {
-                if (self.owner) {
-                    if (self.owner.isActive) {
-                        self.action.call(self.owner, newValue);
-                    }
-                } else {
-                    self.action(newValue);
+        if (self.action) {
+            if (self.owner) {
+                if (self.owner.isActive) {
+                    this._reactTimer = cw.setTimer(
+                        function () {
+                            let t0 = performance.now();
+                            self.action.call(self.owner, newValue);
+                            let t1 = performance.now();
+                            CubY.debug('Element ' + self.owner.id + ' took [' + (t1 - t0).toFixed(0) + 'ms] for reacting to the change of [' + self.bindingKey + ']. ', {
+                                tag: 'REACT',
+                                detail: self.action
+                            });
+                        }, this._freq)
                 }
+            }else {
+                this._reactTimer = cw.setTimer(function () {
+                    let t0 = performance.now();
+                    self.action(newValue);
+                    let t1 = performance.now();
+                    CubY.debug('Reacting to the change of [' + self.bindingKey + '] took ['+ (t1- t0).toFixed(0) +'ms]', {tag: 'REACT', detail:self.action});
+
+                },this._freq);
             }
-            self._reactTimer = undefined;
-        }, 25);
+        }
     }
 }
+
+export default CubY_Core;

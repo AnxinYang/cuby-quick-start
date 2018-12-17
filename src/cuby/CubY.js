@@ -1,45 +1,60 @@
 import CubY_Core from './CubY_Core';
-import CubY_DOM from './CubY_DOM';
+import CDOM from './CubY_DOM';
 import CubY_Routine from './CubY_Routine';
+import CubY_Module from './CubY_Module';
+import CubY_XHR from './CubY_XHR';
 const EMPTY_FUNCTION = ()=>{};
 
-var CubY = {
 
-    //Core
-    getValue: CubY_Core.getValue.bind(CubY_Core),
-    getBrowser: CubY_Core.getBrowser.bind(CubY_Core),
-    storeDataArray: CubY_Core.storeDataArray.bind(CubY_Core),
-    storeValue: CubY_Core.storeValue.bind(CubY_Core),
-    setValue: CubY_Core.setValue.bind(CubY_Core),
-    connect: CubY_Core.connect.bind(CubY_Core),
-    react: CubY_Core.react.bind(CubY_Core),
-    debug: CubY_Core.debug.bind(CubY_Core),
-    readValue: CubY_Core.readValue.bind(CubY_Core),
-    isObjectEmpty: CubY_Core.isObjectEmpty.bind(CubY_Core),
-    createID: CubY_Core.createID.bind(CubY_Core),
-    getCallerName: CubY_Core.getCallerName.bind(CubY_Core),
-    server: CubY_Core.server.bind(CubY_Core),
+function CubY (config) {
+    let Core = new CubY_Core(config);
+    let methods = {
+        //Core
+        getValue: Core.getValue.bind(Core),
+        getBrowser: Core.getBrowser.bind(Core),
+        storeValue: Core.storeValue.bind(Core),
+        storeArray: Core.storeArray.bind(Core),
+        setValue: Core.setValue.bind(Core),
+        connect: Core.connect.bind(Core),
+        react: Core.react.bind(Core),
+        debug: Core.debug.bind(Core),
+        readValue: Core.readValue.bind(Core),
+        isObjectEmpty: Core.isObjectEmpty.bind(Core),
+        createID: Core.createID.bind(Core),
+        getCallerName: Core.getCallerName.bind(Core),
 
+        //DOM
+        createElement: function (_tag, _id, _root) {
+            return new CDOM(_tag, _id, _root);
+        },
+        createElementNS: function (_tag, _id, _root) {
+            return new CDOM(_tag, _id, _root, true);
+        },
+        //
+        module: function(fn, options){
+            return new CubY_Module(fn, options)
+        },
+        //xhr
+        ajax: CubY_XHR.ajax,
+        //Routine
+        createRoutine:CubY_Routine.createRoutine.bind(CubY_Routine),
+        getCurrentCycle:CubY_Routine.getCurrentCycle.bind(CubY_Routine),
+        routine:CubY_Routine.routine.bind(CubY_Routine),
+        //AddOns
+        addOn: function (obj) {
+            for(var key in obj){
+                if(obj.hasOwnProperty(key)){
+                    CubY[key] = obj[key];
+                }
+            }
+        },
+        //Other
+        version: 'Privata.111618.00',
+        debugInfo: [CubY_Core,CubY_Routine]
+    };
+    Object.assign(CubY, methods);
+}
 
-    //DOM
-    createElement: CubY_DOM.createElement,
-
-    //Routine
-    createRoutine:CubY_Routine.createRoutine.bind(CubY_Routine),
-    getCurrentCycle:CubY_Routine.getCurrentCycle.bind(CubY_Routine),
-    routine:CubY_Routine.routine.bind(CubY_Routine),
-    //AddOns
-    addOn: function (obj) {
-      for(var key in obj){
-          if(obj.hasOwnProperty(key)){
-              CubY[key] = obj[key];
-          }
-      }
-    },
-    //Other
-    version: '0.8b.ne.0.10',
-    debugInfo: [CubY_Core,CubY_Routine]
-};
 
 window.CubY = CubY;
 export default CubY;
